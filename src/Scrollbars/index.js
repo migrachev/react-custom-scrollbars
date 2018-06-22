@@ -495,6 +495,8 @@ export default class Scrollbars extends Component {
             renderTrackVertical,
             renderThumbHorizontal,
             renderThumbVertical,
+            thumbStopClickPropagation,
+            trackStopClickPropagation,
             tagName,
             hideTracksWhenNotNeeded,
             autoHide,
@@ -553,20 +555,40 @@ export default class Scrollbars extends Component {
             opacity: 0
         };
 
-        const trackHorizontalStyle = {
-            ...trackHorizontalStyleDefault,
-            ...(autoHide && trackAutoHeightStyle),
-            ...((!scrollbarWidth || (universal && !didMountUniversal)) && {
-                display: 'none'
-            })
+        const trackHorizontalProps = {
+            style: {
+                ...trackHorizontalStyleDefault,
+                ...(autoHide && trackAutoHeightStyle),
+                ...((!scrollbarWidth || (universal && !didMountUniversal)) && {
+                    display: 'none'
+                }),
+            stopClickPropagation: trackStopClickPropagation
+            }
         };
 
-        const trackVerticalStyle = {
-            ...trackVerticalStyleDefault,
-            ...(autoHide && trackAutoHeightStyle),
-            ...((!scrollbarWidth || (universal && !didMountUniversal)) && {
-                display: 'none'
-            })
+        const trackVerticalProps = {
+            style: {
+                ...trackVerticalStyleDefault,
+                ...(autoHide && trackAutoHeightStyle),
+                ...((!scrollbarWidth || (universal && !didMountUniversal)) && {
+                    display: 'none'
+                }),
+            stopClickPropagation: trackStopClickPropagation
+            }
+        };
+
+        const thumbHorizontalProps = {
+            style: {
+                thumbHorizontalStyleDefault
+            },
+            stopClickPropagation: thumbStopClickPropagation
+        };
+
+        const thumbVerticalProps = {
+            style: {
+                thumbVerticalStyleDefault
+            },
+            stopClickPropagation: thumbStopClickPropagation
         };
 
         return createElement(tagName, { ...props, style: containerStyle, ref: (ref) => { this.container = ref; } }, [
@@ -576,18 +598,18 @@ export default class Scrollbars extends Component {
                 children
             ),
             cloneElement(
-                renderTrackHorizontal({ style: trackHorizontalStyle }),
+                renderTrackHorizontal(trackHorizontalProps),
                 { key: 'trackHorizontal', ref: (ref) => { this.trackHorizontal = ref; } },
                 cloneElement(
-                    renderThumbHorizontal({ style: thumbHorizontalStyleDefault }),
+                    renderThumbHorizontal(thumbHorizontalProps),
                     { ref: (ref) => { this.thumbHorizontal = ref; } }
                 )
             ),
             cloneElement(
-                renderTrackVertical({ style: trackVerticalStyle }),
+                renderTrackVertical(trackVerticalProps),
                 { key: 'trackVertical', ref: (ref) => { this.trackVertical = ref; } },
                 cloneElement(
-                    renderThumbVertical({ style: thumbVerticalStyleDefault }),
+                    renderThumbVertical(thumbVerticalProps),
                     { ref: (ref) => { this.thumbVertical = ref; } }
                 )
             )

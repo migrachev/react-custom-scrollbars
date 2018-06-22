@@ -1,4 +1,5 @@
 import React from 'react';
+import getSmartPropagationStopper from "../utils/getSmartPropagationStopper"
 /* eslint-disable react/prop-types */
 
 export function renderViewDefault(props) {
@@ -13,7 +14,8 @@ export function renderTrackHorizontalDefault({ style, ...props }) {
         left: 2,
         borderRadius: 3
     };
-    return <div style={finalStyle} {...props} />;
+
+    return <div onClick={getSmartPropagationStopper(props)} style={finalStyle} {...props} />;
 }
 
 export function renderTrackVerticalDefault({ style, ...props }) {
@@ -24,7 +26,7 @@ export function renderTrackVerticalDefault({ style, ...props }) {
         top: 2,
         borderRadius: 3
     };
-    return <div style={finalStyle} {...props} />;
+    return <div onClick={getSmartPropagationStopper(props)} style={finalStyle} {...props} />;
 }
 
 export function renderThumbHorizontalDefault({ style, ...props }) {
@@ -34,7 +36,7 @@ export function renderThumbHorizontalDefault({ style, ...props }) {
         borderRadius: 'inherit',
         backgroundColor: 'rgba(0,0,0,.2)'
     };
-    return <div style={finalStyle} {...props} />;
+    return <div onClick={getSmartPropagationStopper(props)} style={finalStyle} {...props} />;
 }
 
 export function renderThumbVerticalDefault({ style, ...props }) {
@@ -44,5 +46,5 @@ export function renderThumbVerticalDefault({ style, ...props }) {
         borderRadius: 'inherit',
         backgroundColor: 'rgba(0,0,0,.2)'
     };
-    return <div style={finalStyle} {...props} />;
+    return <div onClick={getSmartPropagationStopper(props)} style={finalStyle} {...props} />;
 }
