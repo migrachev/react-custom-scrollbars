@@ -1,5 +1,5 @@
 import React from 'react';
-import getSmartPropagationStopper from "../utils/getSmartPropagationStopper"
+import getSmartPropagationStopper from '../utils/getSmartPropagationStopper';
 /* eslint-disable react/prop-types */
 
 export function renderViewDefault(props) {

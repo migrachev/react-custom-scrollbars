@@ -628,6 +628,8 @@ Scrollbars.propTypes = {
     renderTrackVertical: PropTypes.func,
     renderThumbHorizontal: PropTypes.func,
     renderThumbVertical: PropTypes.func,
+    thumbStopClickPropagation: PropTypes.bool,
+    trackStopClickPropagation: PropTypes.bool,
     tagName: PropTypes.string,
     thumbSize: PropTypes.number,
     thumbMinSize: PropTypes.number,
